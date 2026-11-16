@@ -4,8 +4,6 @@
 
 SKYTRACE AI is an enterprise-ready, full-stack aviation baggage tracking and operational intelligence platform. Designed for **Passengers**, **Airport Ground Staff**, and **Operations Administrators**, it pairs digital baggage identities (QR + RFID EPC mapping) with real-time Socket.IO telemetry, browser-based camera scanning, and Gemini AI-driven delay and anomaly detection.
 
----
-
 ## 🌟 Key Features
 
 ### 👤 Passenger Portal
@@ -27,8 +25,6 @@ SKYTRACE AI is an enterprise-ready, full-stack aviation baggage tracking and ope
 - **AI Operations Copilot:** Grounded natural-language query assistant for flight and baggage operations.
 - **Data Export & Governance:** One-click CSV export, comprehensive audit trails, flight management, and staff account provisioning.
 
----
-
 ## 🏗️ System Architecture & Tech Stack
 
 | Layer | Technologies |
@@ -37,8 +33,6 @@ SKYTRACE AI is an enterprise-ready, full-stack aviation baggage tracking and ope
 | **Backend** | Node.js, Express, TypeScript (`tsx`), Socket.IO (WebSocket telemetry), JWT & `bcryptjs` Auth |
 | **Database** | Dual Mode: MongoDB / Atlas via Mongoose with automatic fallback to zero-config local persistent store (`./data/skytrace.db.json`) |
 | **AI Intelligence** | Google Gemini API (`@google/genai`) for real-time risk scoring, sequence anomaly audits, and conversational copilot |
-
----
 
 ## 🚀 Quick Start Guide
 
@@ -83,8 +77,6 @@ npm run build
 npm start
 ```
 
----
-
 ## 🔐 Demo Credentials
 
 Test accounts are pre-seeded and ready to use immediately:
@@ -97,8 +89,6 @@ Test accounts are pre-seeded and ready to use immediately:
 
 > **Public Demo Sample Baggage IDs:** `DEMO-BAG-901`, `DEMO-BAG-902`, `DEMO-BAG-903`  
 > **Seeded Live Baggage IDs (Staff/Passenger view):** `ST-2026-4810` through `ST-2026-4817`
-
----
 
 ## 🔄 Baggage Checkpoint Flow
 
@@ -119,8 +109,6 @@ Test accounts are pre-seeded and ready to use immediately:
          ↓
 [8. Baggage Claim Carousel Ready]
 ```
-
----
 
 ## 📡 API Reference Overview
 
@@ -152,8 +140,6 @@ Test accounts are pre-seeded and ready to use immediately:
 - `GET /api/ai/delay-risk` — AI assessment of high-risk bags approaching departure *(Staff/Admin)*.
 - `GET /api/ai/anomalies` — Algorithmic and AI detection of out-of-order or missing scans *(Staff/Admin)*.
 - `POST /api/ai/assistant` — Interactive grounded operations intelligence copilot *(Staff/Admin)*.
-
----
 
 ## 📄 License
 
