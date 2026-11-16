@@ -1,110 +1,160 @@
-# SKYTRACE AI — Smart Airport Baggage Tracking & Intelligence Platform
+# ✈️ SKYTRACE AI — Smart Airport Baggage Tracking & Intelligence Platform
 
-**Tagline:** *Every Bag. Every Journey. Always in Sight.*
+> **"Every Bag. Every Journey. Always in Sight."**
 
-SKYTRACE AI is a full-stack aviation baggage tracking and intelligence platform built for **Passengers**, **Airport Ground Staff**, and **Operations Administrators**. It pairs unique digital baggage identities (QR + RFID EPC mapping) with real-time Socket.IO telemetry, browser camera QR scanning, and AI-assisted delay/anomaly detection.
-
----
-
-## Architecture Overview
-
-- **Frontend:** React 19, TypeScript, Tailwind CSS v4, Framer Motion (`motion`), Recharts, Lucide Icons, `html5-qrcode`.
-- **Backend:** Node.js, Express, TypeScript, Socket.IO, JWT + `bcryptjs` authentication, `qrcode` generator.
-- **Database:** MongoDB via Mongoose schemas (`server/models/mongooseSchemas.ts`) with an automatic zero-config persistent local JSON store (`./data/skytrace.db.json`) when `MONGODB_URI` is not set.
-- **AI Intelligence:** Server-side `@google/genai` (`gemini-4-hydrogen`) for delay risk analysis and grounded operations Q&A, paired with deterministic rule-based evaluation as a guaranteed fallback.
+SKYTRACE AI is an enterprise-ready, full-stack aviation baggage tracking and operational intelligence platform. Designed for **Passengers**, **Airport Ground Staff**, and **Operations Administrators**, it pairs digital baggage identities (QR + RFID EPC mapping) with real-time Socket.IO telemetry, browser-based camera scanning, and Gemini AI-driven delay and anomaly detection.
 
 ---
 
-## Local Setup & Installation
+## 🌟 Key Features
 
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+### 👤 Passenger Portal
+- **Real-Time Bag Tracking:** Track baggage journey across 8 airport checkpoints with live status updates.
+- **Digital Boarding & Bag Passes:** View unique Baggage IDs, digital tags, and downloadable QR tags.
+- **Incident Reporting:** File claims and track real-time resolution status for missing, delayed, or damaged baggage.
+- **Instant Flight & Gate Information:** Live sync with departure gates, carousel numbers, and flight status.
 
-2. **Configure environment variables:**
-   Copy `.env.example` to `.env` and fill in your values as needed:
-   ```env
-   GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
-   MONGODB_URI="" # Optional: MongoDB Atlas URI. Leave blank for automatic local persistent store.
-   JWT_SECRET="replace-with-secure-secret"
-   PORT=3000
-   ```
+### 👷 Staff Operations Portal
+- **Camera QR Scanner & Manual Lookup:** Ultra-fast scanning using integrated webcam/mobile browser camera via `html5-qrcode`.
+- **RFID Portal Simulation:** Integrated testing mode simulating industrial UHF RFID readers at critical baggage gates.
+- **Checkpoint Progression Validation:** Built-in safeguards against invalid or out-of-order scans.
+- **Instant Incident Resolution:** Process passenger reports and update investigation remarks in real time.
 
-3. **Run in development:**
-   ```bash
-   npm run dev
-   ```
-   The full-stack server and Vite frontend run together on `http://localhost:3000`.
-
-4. **Production build & start:**
-   ```bash
-   npm run build
-   npm start
-   ```
+### 🛡️ Admin & Intelligence Command Center
+- **Airport Digital Twin:** Interactive schematic map visualizing baggage flow across all 8 airport zones.
+- **Live Operations Analytics:** Real-time throughput metrics, delay charts, and status breakdowns powered by Recharts.
+- **AI Delay Risk & Anomaly Engine:** Identifies baggage dwell bottlenecks, flight departure proximity risks, and skipped checkpoints.
+- **AI Operations Copilot:** Grounded natural-language query assistant for flight and baggage operations.
+- **Data Export & Governance:** One-click CSV export, comprehensive audit trails, flight management, and staff account provisioning.
 
 ---
 
-## Demo Login Credentials
+## 🏗️ System Architecture & Tech Stack
 
-| Role | Name | Email | Password |
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | React 19, TypeScript, Tailwind CSS v4, Framer Motion, Recharts, Lucide Icons, `html5-qrcode` |
+| **Backend** | Node.js, Express, TypeScript (`tsx`), Socket.IO (WebSocket telemetry), JWT & `bcryptjs` Auth |
+| **Database** | Dual Mode: MongoDB / Atlas via Mongoose with automatic fallback to zero-config local persistent store (`./data/skytrace.db.json`) |
+| **AI Intelligence** | Google Gemini API (`@google/genai`) for real-time risk scoring, sequence anomaly audits, and conversational copilot |
+
+---
+
+## 🚀 Quick Start Guide
+
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm or bun
+
+### 1. Clone & Install
+```bash
+git clone https://github.com/Tanya-garg10/SKYTRACE-AI-Smart-Airport-Baggage-Tracking-Intelligence-Platform.git
+cd SKYTRACE-AI-Smart-Airport-Baggage-Tracking-Intelligence-Platform
+npm install
+```
+
+### 2. Configure Environment Variables
+Copy `.env.example` to `.env`:
+```bash
+cp .env.example .env
+```
+Update `.env` with your credentials:
+```env
+# Gemini API Key (Required for AI insights & Copilot)
+GEMINI_API_KEY="your_gemini_api_key_here"
+
+# Database Configuration (Optional: defaults to local JSON storage if left blank)
+MONGODB_URI=""
+
+# Security
+JWT_SECRET="your-super-secret-jwt-key"
+PORT=3000
+```
+
+### 3. Run Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser. Both the Vite client and Express/Socket.IO backend run concurrently.
+
+### 4. Production Build & Execution
+```bash
+npm run build
+npm start
+```
+
+---
+
+## 🔐 Demo Credentials
+
+Test accounts are pre-seeded and ready to use immediately:
+
+| Portal Role | Name | Email | Password |
 | :--- | :--- | :--- | :--- |
 | **Passenger** | Elena Rostova | `passenger@skytrace.aero` | `SkyPass2026!` |
 | **Airport Staff** | Marcus Vance | `staff@skytrace.aero` | `SkyStaff2026!` |
 | **Administrator** | Dr. Aris Thorne | `admin@skytrace.aero` | `SkyAdmin2026!` |
 
-Public Landing Demo Sample IDs (isolated from live records): `DEMO-BAG-901`, `DEMO-BAG-902`, `DEMO-BAG-903`.
-Live Seeded Bag IDs (accessible when signed in): `ST-2026-4810` through `ST-2026-4817`.
+> **Public Demo Sample Baggage IDs:** `DEMO-BAG-901`, `DEMO-BAG-902`, `DEMO-BAG-903`  
+> **Seeded Live Baggage IDs (Staff/Passenger view):** `ST-2026-4810` through `ST-2026-4817`
 
 ---
 
-## API Documentation
+## 🔄 Baggage Checkpoint Flow
 
-### Public & Auth
-- `GET /api/health` — Service health, active DB mode, and AI availability.
-- `GET /api/public/stats` — Live database metrics for the landing page.
-- `GET /api/public/demo-tracking/:bagId` — Sample demo journey lookup (`DEMO-BAG-*`).
-- `POST /api/auth/register` — Register a passenger account.
-- `POST /api/auth/login` — Authenticate and receive JWT token + cookie.
-- `POST /api/auth/logout` — Clear session cookie.
-- `GET /api/auth/me` — Retrieve authenticated user profile.
-
-### Baggage & Scanning
-- `GET /api/baggage` — Role-scoped baggage list (supports `?search=`, `?status=`, `?flightNumber=`).
-- `GET /api/baggage/track/:bagId` — Full baggage details, flight info, recorded events, and QR DataURL.
-- `POST /api/baggage/register` *(Staff/Admin)* — Register new baggage, generate Bag ID + QR + RFID EPC.
-- `POST /api/baggage/scan` *(Staff/Admin)* — Record checkpoint scan (`QR_SCAN`, `RFID_READER`, or `MANUAL_STAFF`), validate transitions, and emit Socket.IO events/notifications.
-
-### Reports & Notifications
-- `GET /api/reports` — List missing/damaged baggage reports (role-scoped).
-- `POST /api/reports` — Submit a missing or damaged baggage report.
-- `PATCH /api/reports/:id` *(Staff/Admin)* — Update investigation status and resolution notes.
-- `GET /api/notifications` — Retrieve user/role notifications with read state.
-- `PATCH /api/notifications/:id/read` — Mark notification as read.
-
-### Admin & AI Intelligence
-- `GET /api/admin/overview` *(Admin)* — Operational KPI counts.
-- `GET /api/admin/analytics` *(Admin)* — Chart series for flights, status breakdown, checkpoints, and time windows.
-- `GET /api/admin/users` / `POST /api/admin/users/staff` / `PATCH /api/admin/users/:id` *(Admin)* — User & staff governance.
-- `GET /api/admin/flights` / `POST /api/admin/flights` / `PATCH /api/admin/flights/:id` *(Admin)* — Flight management.
-- `GET /api/admin/export/csv` *(Admin)* — Download CSV baggage report.
-- `GET /api/ai/delay-risk` *(Staff/Admin)* — Delay risk scoring grounded in checkpoint dwell and departure proximity.
-- `GET /api/ai/anomalies` *(Staff/Admin)* — Duplicate scan, skipped checkpoint, and sequence anomaly detection.
-- `POST /api/ai/assistant` *(Staff/Admin)* — Grounded operations Q&A assistant.
+```
+[1. Check-In & Tagging]
+         ↓
+[2. Security & Screening]
+         ↓
+[3. Baggage Sortation System]
+         ↓
+[4. Apron Transfer / Cart Loading]
+         ↓
+[5. Aircraft Loading]
+         ↓
+[6. In-Flight Transfer / Transit]
+         ↓
+[7. Baggage Unloading at Destination]
+         ↓
+[8. Baggage Claim Carousel Ready]
+```
 
 ---
 
-## Implemented vs. Simulated / Future Integrations
+## 📡 API Reference Overview
 
-- **Implemented End-to-End:**
-  - Role-based authentication & authorization (Passenger, Staff, Admin).
-  - Baggage registration with unique Bag IDs, QR code generation, and downloadable/printable PNG identification cards.
-  - Browser camera QR code scanning (`html5-qrcode`) + manual Bag ID entry fallback.
-  - 8-stage checkpoint progression with backward-transition validation and database persistence.
-  - Real-time Socket.IO scan & notification broadcasting + read/unread Notification Center.
-  - Missing & damaged baggage incident reporting and staff investigation workflow.
-  - Admin Recharts analytics, user/staff/flight/checkpoint management, audit logs, and CSV export.
-  - AI Delay Risk Analysis, Anomaly Detection, and grounded Operations Assistant with deterministic fallback.
-- **Simulated / Illustrative:**
-  - **RFID Reader Simulation Mode:** Clearly labeled simulation mode in the Staff Scanner that emits `RFID_READER` events into the same ingestion pipeline prepared for future UHF RFID portal hardware.
-  - **Illustrative Terminal Map:** Interactive schematic visualization representing the 8 airport baggage zones without proprietary CAD/GIS airport floorplans.
+### 🔐 Authentication & Public
+- `GET /api/health` — Service health, active DB mode, and AI availability status.
+- `GET /api/public/stats` — Real-time aggregate baggage and airport metrics.
+- `GET /api/public/demo-tracking/:bagId` — Public lookup for demo luggage tracking.
+- `POST /api/auth/login` — Authenticate and generate session token.
+- `POST /api/auth/register` — Passenger account registration.
+- `GET /api/auth/me` — Current user context and profile.
+
+### 🧳 Baggage Tracking & Checkpoints
+- `GET /api/baggage` — Retrieve filtered baggage records (role-protected).
+- `GET /api/baggage/track/:bagId` — Full journey timeline, flight association, and dynamic QR payload.
+- `POST /api/baggage/register` — Register new luggage and generate QR + RFID metadata *(Staff/Admin)*.
+- `POST /api/baggage/scan` — Process QR or simulated RFID checkpoint events and broadcast via WebSockets *(Staff/Admin)*.
+
+### 🚨 Incident Reports & Real-Time Alerts
+- `GET /api/reports` — Fetch list of filed baggage claims.
+- `POST /api/reports` — Submit new damaged or lost luggage report.
+- `PATCH /api/reports/:id` — Update report investigation status and resolution notes *(Staff/Admin)*.
+- `GET /api/notifications` — Fetch user-specific notifications and alerts.
+- `PATCH /api/notifications/:id/read` — Mark notification as acknowledged.
+
+### 🧠 Operations Analytics & AI Copilot
+- `GET /api/admin/overview` — High-level airport operational KPIs *(Admin)*.
+- `GET /api/admin/analytics` — Detailed time-series, status distributions, and flight delay charts *(Admin)*.
+- `GET /api/admin/export/csv` — Export baggage event logs as CSV *(Admin)*.
+- `GET /api/ai/delay-risk` — AI assessment of high-risk bags approaching departure *(Staff/Admin)*.
+- `GET /api/ai/anomalies` — Algorithmic and AI detection of out-of-order or missing scans *(Staff/Admin)*.
+- `POST /api/ai/assistant` — Interactive grounded operations intelligence copilot *(Staff/Admin)*.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
