@@ -1,0 +1,87 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-display: 'Outfit', system-ui, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+    /* MIDNIGHT AURORA Palette */
+    --ma-navy: #101B2D;
+    --ma-slate: #203650;
+    --ma-cyan: #54D6E8;
+    --ma-gold: #C9A96E;
+    --ma-cloud: #F3F5F7;
+    --ma-silver: #A8B6C7;
+    --ma-green: #52C7A5;
+    --ma-amber: #F0B85B;
+    --ma-coral: #E87583;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono, code, pre {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.bg-ma-hero {
+  background-image: linear-gradient(120deg, #101B2D, #203650, #287F9B);
+}
+
+.bg-ma-aurora {
+  background-image: linear-gradient(120deg, #54D6E8, #78E6D8);
+}
+
+.bg-ma-gold {
+  background-image: linear-gradient(90deg, #C9A96E, #F2D9A2);
+}
+
+.aviation-noise {
+  background-image: radial-gradient(rgba(84, 214, 232, 0.045) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+
+@keyframes scan-beam {
+  0% {
+    transform: translateY(0%);
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(220px);
+    opacity: 0.25;
+  }
+}
+
+.animate-scan-beam {
+  animation: scan-beam 2.2s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scan-beam {
+    animation: none;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

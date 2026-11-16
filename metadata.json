@@ -1,0 +1,6 @@
+{
+  "name": "SKYTRACE AI",
+  "description": "Smart Airport Baggage Tracking & Intelligence Platform — Every Bag. Every Journey. Always in Sight.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
