@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { api } from '../services/api';
 import type { AnomalyDetectionItem, DelayRiskAssessment } from '../types';
+import { MarkdownRenderer } from './MarkdownRenderer';
 
 const SUGGESTED_QUESTIONS = [
   'Which bags are currently delayed?',
@@ -328,9 +329,7 @@ export function AIInsightPanel() {
                   className="p-4 rounded-xl border border-[#A8B6C7]/18 bg-[#101B2D]/90 space-y-2 text-xs"
                 >
                   <div className="font-semibold text-[#54D6E8]">{item.q}</div>
-                  <div className="text-[#F3F5F7] whitespace-pre-line leading-relaxed">
-                    {item.a}
-                  </div>
+                  <MarkdownRenderer content={item.a} />
                 </div>
               ))
             )}
