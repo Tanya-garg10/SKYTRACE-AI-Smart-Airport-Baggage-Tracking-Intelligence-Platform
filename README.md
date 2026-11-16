@@ -77,6 +77,53 @@ npm run build
 npm start
 ```
 
+---
+
+## 🌐 Deployment Guide
+
+SKYTRACE AI runs as a single full-stack service (Express server + Vite static assets + Socket.IO WebSockets). You can deploy it to **Render**, **Railway**, **Fly.io**, or via **Docker/VPS**.
+
+### 1. Deploy on Render (Recommended - Free & Easy)
+1. Go to [Render Dashboard](https://dashboard.render.com/) and click **New + > Web Service**.
+2. Connect your GitHub repository: `SKYTRACE-AI-Smart-Airport-Baggage-Tracking-Intelligence-Platform`.
+3. Configure the settings:
+   - **Environment:** `Node`
+   - **Build Command:** `npm install && npm run build`
+   - **Start Command:** `npm start`
+4. Add **Environment Variables** in Render:
+   - `NODE_ENV` = `production`
+   - `PORT` = `10000` *(Render provides this automatically)*
+   - `JWT_SECRET` = `(generate a strong random secret)`
+   - `GEMINI_API_KEY` = `(your Gemini API key)`
+   - `MONGODB_URI` = `(optional: MongoDB Atlas URI, or leave empty for built-in local store)`
+5. Click **Create Web Service**.
+
+---
+
+### 2. Deploy on Railway
+1. Go to [Railway](https://railway.app/) and create a **New Project**.
+2. Select **Deploy from GitHub repo** and pick this repository.
+3. In **Settings**:
+   - **Build Command:** `npm install && npm run build`
+   - **Start Command:** `npm start`
+4. In the **Variables** tab, add:
+   - `NODE_ENV`: `production`
+   - `JWT_SECRET`: `your_random_secret`
+   - `GEMINI_API_KEY`: `your_gemini_api_key`
+   - `MONGODB_URI`: *(Optional: MongoDB Atlas URI)*
+5. Click **Deploy**.
+
+---
+
+### 3. Deploy with Docker / VPS
+Create a `Dockerfile` in the root or build directly:
+```bash
+docker build -t skytrace-ai .
+docker run -p 3000:3000 -e GEMINI_API_KEY="your-key" -e JWT_SECRET="your-secret" skytrace-ai
+```
+
+---
+
 ## 🔐 Demo Credentials
 
 Test accounts are pre-seeded and ready to use immediately:
